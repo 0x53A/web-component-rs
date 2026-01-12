@@ -1,0 +1,55 @@
+name: Github Pages
+
+# By default, runs if you push to main. keeps your deployed app in sync with main branch.
+on:
+  push:
+    branches:
+      - main
+# to only run when you do a new github release, comment out above part and uncomment the below trigger.
+# on:
+#   release:
+#     types:
+#       - published
+
+permissions:
+  contents: write # for committing to gh-pages branch.
+
+jobs:
+  build-github-pages:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v4 # repo checkout
+
+      - name: Setup toolchain for wasm
+        run: |
+          rustup update nightly
+          rustup default nightly
+          rustup set profile minimal
+          rustup target add wasm32-unknown-unknown
+          rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
+
+      - name: Rust Cache # cache the rust build artefacts
+        uses: Swatinem/rust-cache@v2
+
+      - name: Install 
+        run: cargo install wasm-pack
+
+      - name: Build # build
+        run: wasm-pack build --target web --release
+        working-directory: ./demo_component
+
+      - name: Prepare dist folder
+        run: |
+          mkdir dist
+          mkdir dist/pkg
+          cp demo_component/pkg/* dist/pkg/
+          cp demo_component/index.html dist/
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
+          # this option will not maintain any history of your previous pages deployment
+          # set to false if you want all page build to be committed to your gh-pages branch history
+          single-commit: true
