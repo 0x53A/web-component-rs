@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rust Web Component Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0 0 10px 0;
+        }
+
+        header p {
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .intro-text {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .intro-text p {
+            margin: 10px 0;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        .sidebar {
+            flex: 1;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            min-height: 300px;
+        }
+
+        .main-content {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer {
+            background: white;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <div class="intro-text">
+            <p>
+                This is a paragraph of text preceding the wasm component.
+            </p>
+        </div>
+
+
+        <div class="main-content">
+            <my-counter></my-counter>
+        </div>
+
+
+        <div class="main-content">
+            <my-counter></my-counter>
+        </div>
+
+        <div style="height: 10px;"></div>
+        
+        <div class="main-content">
+            <egui-component style="height: 60px;"></egui-component>
+        </div>
+
+        <div style="height: 10px;"></div>
+
+        <div class="main-content">
+            <egui-component style="height: 70vh;"></egui-component>
+        </div>
+
+        <div class="footer">
+            <p>This is a little bit of text after the wasm component.</p>
+        </div>
+    </div>
+
+    <script type="module">
+        import init from './pkg/demo_web_component.js';
+        await init();
+    </script>
+</body>
+</html>

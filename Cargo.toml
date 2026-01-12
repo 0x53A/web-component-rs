@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "rust_web_component",
+    "rust_web_component_macro",
+    "demo_component", "egui_web_component",
+]
+resolver = "2"
