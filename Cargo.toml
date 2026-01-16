@@ -2,6 +2,12 @@
 members = [
     "rust_web_component",
     "rust_web_component_macro",
-    "demo_component", "egui_web_component",
+    "demo_component",
+    "egui_web_component",
+    "multiple_demo_components/first_component",
+    "multiple_demo_components/second_component",
+    "multiple_demo_components/third_component",
+    "multiple_demo_components/fourth_component",
+    "multiple_demo_components/fifth_component",
 ]
 resolver = "2"

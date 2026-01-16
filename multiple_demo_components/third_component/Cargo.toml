@@ -1,0 +1,32 @@
+[package]
+name = "third_component"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+js-sys = "0.3"
+web-sys = { version = "0.3", features = [
+    "console",
+    "Window",
+    "Document",
+    "Element",
+    "HtmlElement",
+    "HtmlCanvasElement",
+    "CustomElementRegistry",
+    "ShadowRoot",
+    "ShadowRootInit",
+    "ShadowRootMode",
+    "CssStyleDeclaration"
+] }
+console_error_panic_hook = "0.1"
+rust_web_component = { path = "../../rust_web_component" }
+egui_web_component = { path = "../../egui_web_component" }
+rust_web_component_macro = { path = "../../rust_web_component_macro" }
+egui = "0.33.3"
+eframe = "0.33.3"
+log = "0.4.29"
