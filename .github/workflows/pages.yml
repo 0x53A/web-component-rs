@@ -35,16 +35,40 @@ jobs:
       - name: Install 
         run: cargo install wasm-pack
 
-      - name: Build # build
+      - name: Build first_component
         run: wasm-pack build --target web --release
-        working-directory: ./demo_component
+        working-directory: ./multiple_demo_components/first_component
+
+      - name: Build second_component
+        run: wasm-pack build --target web --release
+        working-directory: ./multiple_demo_components/second_component
+
+      - name: Build third_component
+        run: wasm-pack build --target web --release
+        working-directory: ./multiple_demo_components/third_component
+
+      - name: Build fourth_component
+        run: wasm-pack build --target web --release
+        working-directory: ./multiple_demo_components/fourth_component
+
+      - name: Build fifth_component
+        run: wasm-pack build --target web --release
+        working-directory: ./multiple_demo_components/fifth_component
 
       - name: Prepare dist folder
         run: |
           mkdir dist
-          mkdir dist/pkg
-          cp demo_component/pkg/* dist/pkg/
-          cp demo_component/index.html dist/
+          mkdir -p dist/first_component/pkg
+          mkdir -p dist/second_component/pkg
+          mkdir -p dist/third_component/pkg
+          mkdir -p dist/fourth_component/pkg
+          mkdir -p dist/fifth_component/pkg
+          cp multiple_demo_components/first_component/pkg/* dist/first_component/pkg/
+          cp multiple_demo_components/second_component/pkg/* dist/second_component/pkg/
+          cp multiple_demo_components/third_component/pkg/* dist/third_component/pkg/
+          cp multiple_demo_components/fourth_component/pkg/* dist/fourth_component/pkg/
+          cp multiple_demo_components/fifth_component/pkg/* dist/fifth_component/pkg/
+          cp multiple_demo_components/demo.html dist/index.html
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
