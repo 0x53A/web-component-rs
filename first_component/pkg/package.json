@@ -1,0 +1,15 @@
+{
+  "name": "first_component",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "first_component_bg.wasm",
+    "first_component.js",
+    "first_component.d.ts"
+  ],
+  "main": "first_component.js",
+  "types": "first_component.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

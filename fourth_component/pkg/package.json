@@ -1,0 +1,15 @@
+{
+  "name": "fourth_component",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "fourth_component_bg.wasm",
+    "fourth_component.js",
+    "fourth_component.d.ts"
+  ],
+  "main": "fourth_component.js",
+  "types": "fourth_component.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "fifth_component",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "fifth_component_bg.wasm",
+    "fifth_component.js",
+    "fifth_component.d.ts"
+  ],
+  "main": "fifth_component.js",
+  "types": "fifth_component.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
