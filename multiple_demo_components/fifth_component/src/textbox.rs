@@ -72,14 +72,11 @@ impl TextInputApp {
 }
 
 impl eframe::App for TextInputApp {
-    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
-        egui::CentralPanel::default()
-            .frame(
-                egui::Frame::default()
-                    .fill(Color32::from_rgb(0x11, 0x12, 0x14))
-                    .inner_margin(15.0),
-            )
-            .show(ctx, |ui| {
+    fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
+        egui::Frame::default()
+            .fill(Color32::from_rgb(0x11, 0x12, 0x14))
+            .inner_margin(15.0)
+            .show(ui, |ui| {
                 ui.heading("Text Input Component");
                 ui.add_space(10.0);
 

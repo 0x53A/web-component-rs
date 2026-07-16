@@ -68,14 +68,11 @@ impl EguiApp {
 }
 
 impl eframe::App for EguiApp {
-    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
-        egui::CentralPanel::default()
-            .frame(
-                egui::Frame::default()
-                    .fill(Color32::from_rgb(0x11, 0x12, 0x14))
-                    .inner_margin(0.0),
-            )
-            .show(ctx, |ui| {
+    fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
+        egui::Frame::default()
+            .fill(Color32::from_rgb(0x11, 0x12, 0x14))
+            .inner_margin(0.0)
+            .show(ui, |ui| {
                 ui.label(format!(
                     "Width: {} | Height: {}",
                     ui.available_width(),
@@ -85,7 +82,10 @@ impl eframe::App for EguiApp {
                 egui::ScrollArea::vertical().show(ui, |ui| {
                     egui::Frame::default()
                         .fill(Color32::from_rgb(0x1b, 0x1c, 0x1f))
-                        .stroke(egui::Stroke::new(1.0_f32, Color32::from_rgb(0xff, 0x5a, 0x1f)))
+                        .stroke(egui::Stroke::new(
+                            1.0_f32,
+                            Color32::from_rgb(0xff, 0x5a, 0x1f),
+                        ))
                         .inner_margin(10.0)
                         .corner_radius(0.0)
                         .show(ui, |ui| {
@@ -105,4 +105,3 @@ impl eframe::App for EguiApp {
             });
     }
 }
-

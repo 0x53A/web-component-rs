@@ -24,9 +24,14 @@ impl EguiMount {
         web_options: eframe::WebOptions,
         app_creator: eframe::AppCreator<'static>,
     ) -> Result<Self, wasm_bindgen::JsValue> {
-        let shadow = element
-            .attach_shadow(&web_sys::ShadowRootInit::new(web_sys::ShadowRootMode::Open))
-            .expect("failed to attach shadow root");
+        let shadow = if let Some(shadow) = element.shadow_root() {
+            shadow.set_inner_html("");
+            shadow
+        } else {
+            element
+                .attach_shadow(&web_sys::ShadowRootInit::new(web_sys::ShadowRootMode::Open))
+                .expect("failed to attach shadow root")
+        };
 
         let document = web_sys::window().unwrap().document().unwrap();
         let canvas = document

@@ -27,6 +27,6 @@ console_error_panic_hook = "0.1"
 rust_web_component = { path = "../../rust_web_component" }
 egui_web_component = { version = "0.1.0", path = "../../egui_web_component" }
 rust_web_component_macro = { path = "../../rust_web_component_macro" }
-egui = "0.33.3"
-eframe = "0.33.3"
+egui = "0.35"
+eframe = { version = "0.35", default-features = false, features = ["glow", "default_fonts", "x11", "wayland"] }
 log = "0.4.29"

@@ -11,7 +11,10 @@ pub struct MyCounter {
 
 impl MyCounter {
     fn new() -> Self {
-        Self { count: 0, element: None }
+        Self {
+            count: 0,
+            element: None,
+        }
     }
 
     fn on_click(&mut self) {
@@ -33,11 +36,11 @@ impl WebComponent for MyCounter {
 
     fn connected(&mut self) {
         let element = self.element.as_ref().unwrap();
-        
+
         let shadow = element
             .attach_shadow(&web_sys::ShadowRootInit::new(web_sys::ShadowRootMode::Open))
             .unwrap();
-        
+
         shadow.set_inner_html(r#"
             <style>
                 :host {

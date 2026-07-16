@@ -161,7 +161,9 @@ impl WebComponent for ColorPicker {
 
                         // Update value display
                         if let Some(el) = element_copy.shadow_root() {
-                            if let Ok(Some(value_el)) = el.query_selector(&format!(".{}", value_class)) {
+                            if let Ok(Some(value_el)) =
+                                el.query_selector(&format!(".{}", value_class))
+                            {
                                 value_el.set_text_content(Some(&value.to_string()));
                             }
                         }

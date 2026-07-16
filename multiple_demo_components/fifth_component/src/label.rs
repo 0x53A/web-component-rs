@@ -72,17 +72,14 @@ impl TextDisplayApp {
 }
 
 impl eframe::App for TextDisplayApp {
-    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+    fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
         // Read the shared text on every frame
         let current_text = shared_state::get_shared_text();
 
-        egui::CentralPanel::default()
-            .frame(
-                egui::Frame::default()
-                    .fill(Color32::from_rgb(0x11, 0x12, 0x14))
-                    .inner_margin(15.0),
-            )
-            .show(ctx, |ui| {
+        egui::Frame::default()
+            .fill(Color32::from_rgb(0x11, 0x12, 0x14))
+            .inner_margin(15.0)
+            .show(ui, |ui| {
                 ui.heading("Text Display Component");
                 ui.add_space(10.0);
 
@@ -92,7 +89,10 @@ impl eframe::App for TextDisplayApp {
                 // Display the shared text in a prominent way
                 egui::Frame::default()
                     .fill(Color32::from_rgb(0x1b, 0x1c, 0x1f))
-                    .stroke(egui::Stroke::new(2.0_f32, Color32::from_rgb(0xff, 0x5a, 0x1f)))
+                    .stroke(egui::Stroke::new(
+                        2.0_f32,
+                        Color32::from_rgb(0xff, 0x5a, 0x1f),
+                    ))
                     .inner_margin(15.0)
                     .corner_radius(0.0)
                     .show(ui, |ui| {
@@ -139,6 +139,6 @@ impl eframe::App for TextDisplayApp {
             });
 
         // Request continuous updates to show changes immediately
-        ctx.request_repaint();
+        ui.ctx().request_repaint();
     }
 }

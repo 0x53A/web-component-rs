@@ -68,16 +68,13 @@ impl PlotterApp {
 }
 
 impl eframe::App for PlotterApp {
-    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+    fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
         self.time += 0.02;
 
-        egui::CentralPanel::default()
-            .frame(
-                egui::Frame::default()
-                    .fill(Color32::from_rgb(0x11, 0x12, 0x14))
-                    .inner_margin(10.0),
-            )
-            .show(ctx, |ui| {
+        egui::Frame::default()
+            .fill(Color32::from_rgb(0x11, 0x12, 0x14))
+            .inner_margin(10.0)
+            .show(ui, |ui| {
                 ui.heading("Wave Plotter");
                 ui.add_space(5.0);
 
@@ -113,7 +110,10 @@ impl eframe::App for PlotterApp {
 
                 // Draw center line
                 painter.line_segment(
-                    [Pos2::new(rect.left(), center_y), Pos2::new(rect.right(), center_y)],
+                    [
+                        Pos2::new(rect.left(), center_y),
+                        Pos2::new(rect.right(), center_y),
+                    ],
                     Stroke::new(1.0_f32, Color32::from_rgb(0x35, 0x36, 0x3c)),
                 );
 
@@ -130,6 +130,6 @@ impl eframe::App for PlotterApp {
                 ui.label("A simple animated sine wave");
             });
 
-        ctx.request_repaint();
+        ui.ctx().request_repaint();
     }
 }

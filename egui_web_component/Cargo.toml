@@ -20,6 +20,6 @@ web-sys = { version = "0.3", features = [
     "ShadowRootMode",
     "CssStyleDeclaration"
 ] }
-egui = "0.33.3"
-eframe = "0.33.3"
+egui = "0.35"
+eframe = { version = "0.35", default-features = false, features = ["glow", "default_fonts", "x11", "wayland"] }
 log = "0.4.29"
