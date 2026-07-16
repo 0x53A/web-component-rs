@@ -1,0 +1,15 @@
+{
+  "name": "third_component",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "third_component_bg.wasm",
+    "third_component.js",
+    "third_component.d.ts"
+  ],
+  "main": "third_component.js",
+  "types": "third_component.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
