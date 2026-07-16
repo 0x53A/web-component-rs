@@ -69,6 +69,7 @@ jobs:
           cp multiple_demo_components/fourth_component/pkg/* dist/fourth_component/pkg/
           cp multiple_demo_components/fifth_component/pkg/* dist/fifth_component/pkg/
           cp multiple_demo_components/demo.html dist/index.html
+          cp -r multiple_demo_components/fonts dist/fonts
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4

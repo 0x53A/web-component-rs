@@ -1,8 +1,7 @@
 use egui::Color32;
+use egui_web_component::EguiMount;
 use rust_web_component::WebComponent;
 use rust_web_component_macro::WebComponent;
-use wasm_bindgen::prelude::*;
-use web_sys::HtmlCanvasElement;
 
 use crate::shared_state;
 
@@ -10,7 +9,7 @@ use crate::shared_state;
 #[web_component(name = "text-input")]
 pub struct TextInput {
     element: Option<web_sys::HtmlElement>,
-    runner: Option<eframe::WebRunner>,
+    mount: Option<EguiMount>,
 }
 
 impl TextInput {
@@ -18,7 +17,7 @@ impl TextInput {
         eframe::WebLogger::init(log::LevelFilter::Debug).ok();
         Self {
             element: None,
-            runner: None,
+            mount: None,
         }
     }
 }
@@ -29,53 +28,31 @@ impl WebComponent for TextInput {
     }
 
     fn connected(&mut self) {
-        let element = self.element.as_ref().unwrap();
-
-        let shadow = element
-            .attach_shadow(&web_sys::ShadowRootInit::new(web_sys::ShadowRootMode::Open))
-            .expect("failed to attach shadow root");
-
-        let document = web_sys::window().unwrap().document().unwrap();
-
-        let canvas = document
-            .create_element("canvas")
-            .expect("failed to create canvas")
-            .unchecked_into::<HtmlCanvasElement>();
-
-        let canvas_style = canvas.style();
-        canvas_style.set_property("display", "block").unwrap();
-        canvas_style.set_property("width", "100%").unwrap();
-        canvas_style.set_property("height", "100%").unwrap();
-
-        shadow.append_child(&canvas).unwrap();
-
-        let runner = eframe::WebRunner::new();
+        let element = self.element.as_ref().unwrap().clone();
         let element_copy = element.clone();
 
         wasm_bindgen_futures::spawn_local(async move {
-            let result = runner
-                .start(
-                    canvas,
-                    eframe::WebOptions::default(),
-                    Box::new(|cc| Ok(Box::new(TextInputApp::new(cc)))),
-                )
-                .await;
+            let result = EguiMount::connect(
+                &element,
+                eframe::WebOptions::default(),
+                Box::new(|cc| Ok(Box::new(TextInputApp::new(cc)))),
+            )
+            .await;
 
-            if let Err(e) = &result {
-                web_sys::console::error_1(e);
-            }
-
-            if result.is_ok() {
-                TextInput::with_element(&element_copy, |comp| {
-                    comp.runner = Some(runner);
-                });
+            match result {
+                Ok(mount) => {
+                    TextInput::with_element(&element_copy, |comp| {
+                        comp.mount = Some(mount);
+                    });
+                }
+                Err(e) => web_sys::console::error_1(&e),
             }
         });
     }
 
     fn disconnected(&mut self) {
-        if let Some(runner) = self.runner.take() {
-            runner.destroy();
+        if let Some(mount) = self.mount.take() {
+            mount.disconnect();
         }
     }
 }
@@ -86,7 +63,8 @@ pub struct TextInputApp {
 
 impl TextInputApp {
     fn new(cc: &eframe::CreationContext<'_>) -> Self {
-        cc.egui_ctx.set_visuals(egui::Visuals::light());
+        cc.egui_ctx.set_visuals(egui::Visuals::dark());
+        egui_web_component::install_fonts(&cc.egui_ctx);
         Self {
             text: String::new(),
         }
@@ -98,7 +76,7 @@ impl eframe::App for TextInputApp {
         egui::CentralPanel::default()
             .frame(
                 egui::Frame::default()
-                    .fill(Color32::from_rgb(240, 248, 255))
+                    .fill(Color32::from_rgb(0x11, 0x12, 0x14))
                     .inner_margin(15.0),
             )
             .show(ctx, |ui| {

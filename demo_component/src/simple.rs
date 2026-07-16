@@ -40,8 +40,24 @@ impl WebComponent for MyCounter {
         
         shadow.set_inner_html(r#"
             <style>
-                :host { display: inline-block; padding: 10px; border: 1px solid #ccc; }
-                button { padding: 5px 10px; cursor: pointer; }
+                :host {
+                    display: inline-block;
+                    padding: 10px;
+                    border: 1px solid #35363c;
+                    background: #1b1c1f;
+                    color: #ededed;
+                    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+                }
+                button {
+                    padding: 5px 10px;
+                    cursor: pointer;
+                    border: 1px solid #ff5a1f;
+                    background: #111214;
+                    color: #ff5a1f;
+                    font-weight: bold;
+                }
+                button:hover { background: #ff5a1f; color: #111214; }
+                .count { margin-top: 8px; color: #9a9aa0; }
             </style>
             <button class="increment">Click me!</button>
             <div class="count">Count: 0</div>

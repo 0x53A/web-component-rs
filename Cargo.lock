@@ -923,13 +923,10 @@ dependencies = [
 name = "egui_web_component"
 version = "0.1.0"
 dependencies = [
- "console_error_panic_hook",
  "eframe",
  "egui",
  "js-sys",
  "log",
- "rust_web_component",
- "rust_web_component_macro",
  "wasm-bindgen",
  "wasm-bindgen-futures",
  "web-sys",

@@ -16,9 +16,9 @@ impl ColorPicker {
     fn new() -> Self {
         Self {
             element: None,
-            red: 128,
-            green: 128,
-            blue: 128,
+            red: 61,
+            green: 180,
+            blue: 90,
         }
     }
 
@@ -76,19 +76,18 @@ impl WebComponent for ColorPicker {
                 :host {
                     display: block;
                     padding: 20px;
-                    border: 2px solid #2196F3;
-                    border-radius: 10px;
-                    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-                    font-family: Arial, sans-serif;
+                    border: 1px solid #35363c;
+                    border-left: 4px solid #e8432b;
+                    background: #1b1c1f;
+                    color: #ededed;
+                    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
                 }
                 .color-preview {
                     width: 100%;
                     height: 100px;
-                    border: 3px solid #333;
-                    border-radius: 8px;
+                    border: 1px solid #35363c;
                     margin-bottom: 15px;
-                    background-color: #808080;
-                    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                    background-color: #3db45a;
                 }
                 .slider-group {
                     margin: 10px 0;
@@ -101,51 +100,51 @@ impl WebComponent for ColorPicker {
                 input[type="range"] {
                     width: 200px;
                     margin: 0 10px;
+                    accent-color: #e8432b;
                 }
                 .value-display {
                     display: inline-block;
                     width: 35px;
                     text-align: right;
-                    font-family: monospace;
+                    color: #9a9aa0;
                 }
                 .color-info {
                     margin-top: 15px;
                     padding: 10px;
-                    background: white;
-                    border-radius: 5px;
+                    background: #111214;
+                    border: 1px solid #35363c;
                     text-align: center;
                 }
                 .hex-text {
                     font-size: 20px;
                     font-weight: bold;
-                    color: #1976d2;
-                    font-family: monospace;
+                    color: #ff5a1f;
                 }
                 .rgb-text {
                     font-size: 14px;
-                    color: #555;
+                    color: #9a9aa0;
                     margin-top: 5px;
                 }
             </style>
             <div class="color-preview"></div>
             <div class="slider-group">
-                <label style="color: #d32f2f;">Red:</label>
-                <input type="range" class="red-slider" min="0" max="255" value="128">
-                <span class="value-display red-value">128</span>
+                <label style="color: #e8432b;">Red:</label>
+                <input type="range" class="red-slider" min="0" max="255" value="61">
+                <span class="value-display red-value">61</span>
             </div>
             <div class="slider-group">
-                <label style="color: #388e3c;">Green:</label>
-                <input type="range" class="green-slider" min="0" max="255" value="128">
-                <span class="value-display green-value">128</span>
+                <label style="color: #ff5a1f;">Green:</label>
+                <input type="range" class="green-slider" min="0" max="255" value="180">
+                <span class="value-display green-value">180</span>
             </div>
             <div class="slider-group">
-                <label style="color: #1976d2;">Blue:</label>
-                <input type="range" class="blue-slider" min="0" max="255" value="128">
-                <span class="value-display blue-value">128</span>
+                <label style="color: #9a9aa0;">Blue:</label>
+                <input type="range" class="blue-slider" min="0" max="255" value="90">
+                <span class="value-display blue-value">90</span>
             </div>
             <div class="color-info">
-                <div class="hex-text">#808080</div>
-                <div class="rgb-text">RGB(128, 128, 128)</div>
+                <div class="hex-text">#3DB45A</div>
+                <div class="rgb-text">RGB(61, 180, 90)</div>
             </div>
         "#);
 

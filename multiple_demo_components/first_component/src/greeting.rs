@@ -51,28 +51,37 @@ impl WebComponent for GreetingCard {
                 :host {
                     display: block;
                     padding: 20px;
-                    border: 2px solid #4CAF50;
-                    border-radius: 10px;
-                    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-                    font-family: Arial, sans-serif;
+                    border: 1px solid #35363c;
+                    border-left: 4px solid #ff5a1f;
+                    background: #1b1c1f;
+                    color: #ededed;
+                    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
                 }
                 .input-group {
                     margin-bottom: 15px;
                 }
+                label {
+                    color: #9a9aa0;
+                }
                 input {
                     padding: 10px;
-                    border: 2px solid #4CAF50;
-                    border-radius: 5px;
+                    border: 1px solid #35363c;
+                    background: #111214;
+                    color: #ededed;
                     font-size: 16px;
                     width: 200px;
+                }
+                input:focus {
+                    outline: none;
+                    border-color: #ff5a1f;
                 }
                 .output {
                     font-size: 24px;
                     font-weight: bold;
-                    color: #2e7d32;
+                    color: #ff5a1f;
                     padding: 10px;
-                    background: white;
-                    border-radius: 5px;
+                    background: #111214;
+                    border: 1px solid #35363c;
                     text-align: center;
                 }
             </style>
